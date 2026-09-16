@@ -1,0 +1,48 @@
+# DATA CONVENTIONS CONTRACT
+# Teams 2, 3 and 4 code against these. Changing anything here requires a new release id.
+
+return_units: decimal              # 0.0132 means +1.32 percent. NEVER percent in release tables.
+frequency: monthly
+period_key: YYYY-MM                # string, not timestamp. Avoids month-end calendar join failures.
+observation_convention: month_end
+base_currency: USD
+return_type: total_return          # price change plus reinvested income and capital gains
+fee_basis: net_of_fund_expenses    # NAV total returns. Alpha inherits this basis.
+                                   # NOT net of advisory fee or investor taxes. Must be stated on report cards.
+
+risk_free_source: french_rf        # RF column of the Kenneth French factor file.
+                                   # Do NOT substitute FRED DGS10 or DTB3. Excess returns must be
+                                   # consistent with how the factors were constructed.
+                                   # FRED rate series are for Project 5 rate context only.
+
+excess_return_definition: r_fund_minus_rf
+
+missing_policy: flag_no_fill       # NaN stays NaN. No zero fill, no forward fill of NAV.
+                                   # A manufactured return is worse than a missing one.
+
+annualization:
+  volatility: sigma_monthly * sqrt(12)
+  return: compound                 # (prod(1+r))^(12/h) - 1, only for windows >= 12 months
+  short_window_label: cumulative   # windows under 12 months are labelled cumulative, never annualized
+
+cme_conventions:
+  expected_return_types: [arithmetic, compound]   # stored as SEPARATE columns, never mixed
+  optimizer_input: arithmetic                      # mean-variance requires arithmetic ER
+  volatility_basis: annual
+  correlation_matrix_required: true
+  covariance_construction: sigma_ij = rho_ij * sigma_i * sigma_j
+
+minimum_observations:
+  factor_regression: 60            # proposal requirement for Project 2
+  rolling_window_options: [36, 60]
+
+staleness_threshold_months: 2
+
+validation_gates:
+  - table schemas pass
+  - no duplicate (entity_id, period) pairs
+  - return magnitude plausible for stated units
+  - all return entity_ids present in securities master
+  - CME correlation matrix symmetric, diagonal 1, positive semidefinite
+  - coverage table generated and reviewed
+# A failed gate blocks the release. It does not get waived to meet a deadline.

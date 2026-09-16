@@ -1,0 +1,25 @@
+# Minimum versions, not exact pins.
+#
+# Verified working on two very different setups:
+#   Python 3.12 / pandas 3.0.2 / numpy 2.4.4 / scipy 1.17.1   (Linux)
+#   Python 3.14 / numpy 2.5.3 / scipy 1.18.1                  (Windows 11)
+# Byte-identical output on both.
+#
+# Exact pins get frozen at handover, per the proposal's reproducibility
+# requirement. Pinning now would only break teammates on other Python versions,
+# since wheels for one specific release may not exist for their interpreter.
+# At handover:  python -m pip freeze > requirements.lock.txt
+
+# Core, required to run everything in this repo
+pandas>=2.2
+numpy>=1.26
+scipy>=1.11
+PyYAML>=6.0
+requests>=2.31      # only needed by src/ingest.py for live downloads
+
+# Target stack, uncomment as the other teams come online
+# statsmodels>=0.14  # Team 3 regressions
+# cvxpy>=1.4         # Team 2 optimizer
+# pyarrow>=15.0      # Parquet snapshots instead of CSV
+# duckdb>=1.0        # release joins
+# pytest>=8.0        # optional; run_tests.py works without it

@@ -1,0 +1,83 @@
+# ---------------------------------------------------------------------------
+# DATA STAYS OUT OF GIT
+#
+# The separation is deliberate. Once a real fund return series or anything
+# First Bank supplied is committed, it is in the history permanently and
+# removing it means rewriting history for everyone. Easier to never let it in.
+#
+# Code and config are versioned here. Data releases live on OneDrive or Box,
+# identified by release_id, with MANIFEST.json proving which files they are.
+#
+# Regenerate the reference package locally with:  python src/make_reference.py
+# ---------------------------------------------------------------------------
+raw/
+release/
+*.parquet
+*.xlsx
+*.xls
+
+# Anything from the client, under any name anyone improvises
+client_data/
+bank_data/
+approved_list*
+*_confidential*
+*_internal*
+
+# Run logs contain paths and can contain data excerpts
+*_run_log.txt
+
+# ---------------------------------------------------------------------------
+# SECRETS
+# Credentials belong in a secrets manager or local env file, never in the repo.
+# This includes WRDS and Morningstar logins.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+*.pem
+*.key
+secrets.yaml
+credentials.json
+.wrdsrc
+.pgpass
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Testing and type checking
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ---------------------------------------------------------------------------
+# Editors and OS
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

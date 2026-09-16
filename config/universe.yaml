@@ -1,0 +1,216 @@
+# First Bank 60/40 Select Fund Portfolio - pilot universe
+# Source: Proposed Responsibilities for the Five Teams (Team 1 section)
+# STATUS: asset_class and benchmark_proxy are TEAM 1 PROPOSALS pending Ron Manning's confirmation.
+# A fund's benchmark drives every style-drift alert in Project 2, so these must be confirmed, not assumed.
+
+release_id: data_v0.1_reference
+universe_id: fb_6040_select_13
+
+funds:
+  - ticker: FAGCX
+    policy_weight: 0.12
+    legal_name: Fidelity Advisor Growth Opportunities I
+    asset_class: us_large_equity
+    sleeve: us_large_growth
+    region: us
+    style: growth
+    equity: true
+    factor_model: ff3_mom
+    benchmark_proxy: IWF
+    benchmark_desc: Russell 1000 Growth
+    liquid_designation: pending_client
+
+  - ticker: VFIAX
+    policy_weight: 0.12
+    legal_name: Vanguard 500 Index Admiral
+    asset_class: us_large_equity
+    sleeve: us_large_core
+    region: us
+    style: blend
+    equity: true
+    factor_model: ff3_mom
+    benchmark_proxy: IVV
+    benchmark_desc: S&P 500
+    liquid_designation: pending_client
+
+  - ticker: DODGX
+    policy_weight: 0.12
+    legal_name: Dodge & Cox Stock I
+    asset_class: us_large_equity
+    sleeve: us_large_value
+    region: us
+    style: value
+    equity: true
+    factor_model: ff3_mom
+    benchmark_proxy: IWD
+    benchmark_desc: Russell 1000 Value
+    liquid_designation: pending_client
+
+  - ticker: OBSIX
+    policy_weight: 0.03
+    legal_name: Oberweis Small-Cap Opportunities Institutional
+    asset_class: us_small_equity
+    sleeve: us_small_growth
+    region: us
+    style: growth
+    equity: true
+    factor_model: ff3_mom
+    benchmark_proxy: IWO
+    benchmark_desc: Russell 2000 Growth
+    liquid_designation: pending_client
+
+  - ticker: DFFVX
+    policy_weight: 0.02
+    legal_name: DFA US Targeted Value I
+    asset_class: us_small_equity
+    sleeve: us_small_value
+    region: us
+    style: value
+    equity: true
+    factor_model: ff3_mom
+    benchmark_proxy: IWN
+    benchmark_desc: Russell 2000 Value
+    liquid_designation: pending_client
+
+  - ticker: FIGFX
+    policy_weight: 0.05
+    legal_name: Fidelity International Growth
+    asset_class: intl_developed_equity
+    sleeve: intl_dev_growth
+    region: developed_ex_us
+    style: growth
+    equity: true
+    factor_model: ff3_mom_developed
+    benchmark_proxy: EFG
+    benchmark_desc: MSCI EAFE Growth
+    liquid_designation: pending_client
+
+  - ticker: VTMGX
+    policy_weight: 0.06
+    legal_name: Vanguard Developed Markets Index Admiral
+    asset_class: intl_developed_equity
+    sleeve: intl_dev_core
+    region: developed_ex_us
+    style: blend
+    equity: true
+    factor_model: ff3_mom_developed
+    benchmark_proxy: EFA
+    benchmark_desc: MSCI EAFE
+    liquid_designation: pending_client
+
+  - ticker: DODFX
+    policy_weight: 0.05
+    legal_name: Dodge & Cox International Stock I
+    asset_class: intl_developed_equity
+    sleeve: intl_dev_value
+    region: developed_ex_us
+    style: value
+    equity: true
+    factor_model: ff3_mom_developed
+    benchmark_proxy: EFV
+    benchmark_desc: MSCI EAFE Value
+    liquid_designation: pending_client
+
+  - ticker: DFEMX
+    policy_weight: 0.03
+    legal_name: DFA Emerging Markets I
+    asset_class: em_equity
+    sleeve: em_core
+    region: emerging
+    style: blend
+    equity: true
+    factor_model: ff3_mom_emerging
+    benchmark_proxy: EEM
+    benchmark_desc: MSCI Emerging Markets
+    liquid_designation: pending_client
+
+  - ticker: VFSUX
+    policy_weight: 0.08
+    legal_name: Vanguard Short-Term Investment-Grade Admiral
+    asset_class: short_ig_credit
+    sleeve: short_ig_credit
+    region: us
+    style: fixed_income
+    equity: false
+    factor_model: not_applicable_rate_credit
+    benchmark_proxy: IGSB
+    benchmark_desc: Bloomberg 1-5yr US Credit
+    liquid_designation: pending_client
+
+  - ticker: DODIX
+    policy_weight: 0.2
+    legal_name: Dodge & Cox Income I
+    asset_class: core_bond
+    sleeve: core_bond
+    region: us
+    style: fixed_income
+    equity: false
+    factor_model: not_applicable_rate_credit
+    benchmark_proxy: AGG
+    benchmark_desc: Bloomberg US Aggregate
+    liquid_designation: pending_client
+
+  - ticker: DFAIX
+    policy_weight: 0.06
+    legal_name: DFA Short-Duration Real Return Institutional
+    asset_class: inflation_linked
+    sleeve: inflation_linked
+    region: us
+    style: fixed_income
+    equity: false
+    factor_model: not_applicable_rate_credit
+    benchmark_proxy: STIP
+    benchmark_desc: Bloomberg 0-5yr US TIPS
+    liquid_designation: pending_client
+
+  - ticker: BNDX
+    policy_weight: 0.06
+    legal_name: Vanguard Total International Bond ETF
+    asset_class: intl_bond_hedged
+    sleeve: intl_bond_hedged
+    region: global_ex_us
+    style: fixed_income
+    equity: false
+    factor_model: not_applicable_rate_credit
+    benchmark_proxy: BNDX_index
+    benchmark_desc: Bloomberg Global Agg ex-USD, USD-hedged
+    liquid_designation: pending_client
+
+# Project 1 optimizes over asset classes, not funds. Eight classes fall out of the
+# 13-fund list, which lands inside the proposal's 6-8 asset class pilot scope.
+asset_classes:
+  - id: us_large_equity
+    label: US large cap equity
+    growth_asset: true
+  - id: us_small_equity
+    label: US small cap equity
+    growth_asset: true
+  - id: intl_developed_equity
+    label: International developed equity
+    growth_asset: true
+  - id: em_equity
+    label: Emerging market equity
+    growth_asset: true
+  - id: short_ig_credit
+    label: Short-term investment grade credit
+    growth_asset: false
+  - id: core_bond
+    label: US core bond
+    growth_asset: false
+  - id: inflation_linked
+    label: Short-duration inflation linked
+    growth_asset: false
+  - id: intl_bond_hedged
+    label: International bond, USD hedged
+    growth_asset: false
+
+# Policy portfolio supplied by First Bank, received 2026-09-16 via practicum lead.
+# This is w0 in the Project 1 turnover constraint and the reference portfolio that
+# every optimizer result is compared against.
+policy_portfolio:
+  as_of: pending_client
+  weight_type: pending_client   # STRATEGIC TARGET or CURRENT ACTUAL? Changes the model.
+  source: first_bank_supplied
+  sums_to: 1.0
+  equity_weight: 0.60
+  fixed_income_weight: 0.40
