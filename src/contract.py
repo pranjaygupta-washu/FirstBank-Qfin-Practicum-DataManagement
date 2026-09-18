@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-PERIOD_RE = r"^\d{4}-(0[1-9]|1[0-2])$"
+# PERIOD_RE = r"^\d{4}-(0[1-9]|1[0-2])$"
 
 # ---------------------------------------------------------------------------
 # Table schemas. Column order is part of the contract.
